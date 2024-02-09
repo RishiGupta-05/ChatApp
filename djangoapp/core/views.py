@@ -5,7 +5,7 @@ from .forms import SignUpForm
 def frontpage(request):
     return render(request,'C:/Users/rutka/Desktop/Projects/djangochat_env/djangoapp/core/templates/core/frontpage.html')
 
-'''def signup(request):
+def signup(request):
 
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -17,19 +17,9 @@ def frontpage(request):
 
             return redirect('frontpage')
         
-        else:
+    else:
             form = SignUpForm()
 
-        return render(request, 'C:/Users/rutka/Desktop/Projects/djangochat_env/djangoapp/core/templates/core/signup.html', {'form':form})'''
-    
-def signup(request):
-    if request.method == "POST":
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('frontpage')
-    else:  # Handle the GET request here
-        form = SignUpForm()
+    return render(request, 'C:/Users/rutka/Desktop/Projects/djangochat_env/djangoapp/core/templates/core/signup.html', {'form':form})
 
-    return render(request, 'C:/Users/rutka/Desktop/Projects/djangochat_env/djangoapp/core/templates/core/signup.html', {'form': form})
+    
