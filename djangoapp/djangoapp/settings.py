@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,6 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/rooms/'
+LOGIIN_URL = '/login/'
 
 # Application definition
 
@@ -36,9 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'daphne',
     'django.contrib.staticfiles',
     'channels',
     'core',
+    'room',
+    
 ]
 
 MIDDLEWARE = [
@@ -71,8 +78,15 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'djangoapp.wsgi.application'
-ASGI_APPLICATION = 'djangochat.asgi.application'
+ASGI_APPLICATION = 'djangoapp.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default':{
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+} 
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
